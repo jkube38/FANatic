@@ -13,12 +13,19 @@
 #movieData {
     display: flex;
     flex-direction: column;
+    margin: 0 0 0 25px;
 }
 
 #movieTitle {
     font-family: 'Montserrat', sans-serif;
     color: rgb(168, 168, 168);
     margin: 0 0 0 0;
-    background-image: linear-gradient(to right, rgba(101, 14, 105, 0.74), rgba(0, 0, 0, 0) );
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0) );
+}
+
+#plot {
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-weight: bold;
 }
 

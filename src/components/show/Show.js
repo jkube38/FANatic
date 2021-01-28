@@ -3,6 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { searchName, image, displayName, knownFor, actorId, actorImages, notActor, genres, rating, plot} from '../../globalState.js'
 import './show.css'
 import axios from 'axios'
+import { KUBESKEY } from '../../rapidApiKey'
 
 
 function Show () {
@@ -23,7 +24,7 @@ function Show () {
                 url: 'https://imdb8.p.rapidapi.com/title/get-overview-details',
                 params: {tconst: useActorId, currentCountry: 'US'},
                 headers: {
-                'x-rapidapi-key': '1ddf0a8da3msh877010e622bf74dp10873cjsnd762a292965a',
+                'x-rapidapi-key': KUBESKEY,
                 'x-rapidapi-host': 'imdb8.p.rapidapi.com'
                 }
             };

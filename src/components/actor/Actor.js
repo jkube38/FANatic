@@ -7,6 +7,7 @@ import leftButton from '../../images/arrow-left.png'
 import rightButton from '../../images/arrow-right.png'
 import scrollButtonDivider from '../../images/arrow-spacer.png'
 import axios from 'axios'
+import { KUBESKEY } from '../../rapidApiKey'
 
 function Actor () {
 
@@ -33,7 +34,7 @@ function Actor () {
         url: 'https://imdb8.p.rapidapi.com/actors/get-bio',
         params: {nconst: useActorId},
         headers: {
-          'x-rapidapi-key': '1ddf0a8da3msh877010e622bf74dp10873cjsnd762a292965a',
+          'x-rapidapi-key': KUBESKEY,
           'x-rapidapi-host': 'imdb8.p.rapidapi.com'
         }
         
@@ -57,7 +58,7 @@ function Actor () {
         url: 'https://imdb8.p.rapidapi.com/actors/get-all-filmography',
         params: {nconst: useActorId},
         headers: {
-          'x-rapidapi-key': '1ddf0a8da3msh877010e622bf74dp10873cjsnd762a292965a',
+          'x-rapidapi-key': KUBESKEY,
           'x-rapidapi-host': 'imdb8.p.rapidapi.com'
         }
       };
@@ -80,7 +81,7 @@ function Actor () {
         url: 'https://imdb8.p.rapidapi.com/actors/get-all-images',
         params: {nconst: useActorId},
         headers: {
-          'x-rapidapi-key': '1ddf0a8da3msh877010e622bf74dp10873cjsnd762a292965a',
+          'x-rapidapi-key': KUBESKEY,
           'x-rapidapi-host': 'imdb8.p.rapidapi.com'
         }
       };

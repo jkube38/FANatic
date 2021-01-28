@@ -4,6 +4,7 @@ import { searchName, image, displayName, knownFor, actorId, actorImages, notActo
 import axios from 'axios'
 import './header.css'
 import purpleLogo from '../../images/fanatic-logo-2.png'
+import { KUBESKEY } from '../../rapidApiKey.js'
 
 
 function Header () {
@@ -26,7 +27,7 @@ function Header () {
             url: 'https://imdb8.p.rapidapi.com/title/auto-complete',
             params: {q: useSearchName},
             headers: {
-             'x-rapidapi-key': '1ddf0a8da3msh877010e622bf74dp10873cjsnd762a292965a',
+             'x-rapidapi-key': KUBESKEY,
              'x-rapidapi-host': 'imdb8.p.rapidapi.com'
             }
         };
