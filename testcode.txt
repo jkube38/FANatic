@@ -1,6 +1,0 @@
- // axios.get('https://imdb8.p.rapidapi.com/title/auto-complete')
-    //   .then((response) => {
-    //     console.log(response)
-    //     setNasa(response.data.photos[2530].img_src)
-    //     setNasa2(response.data.photos[2300].img_src)
-    //   })
