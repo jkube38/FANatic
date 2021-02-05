@@ -7,7 +7,7 @@ import leftButton from '../../images/arrow-left.png'
 import rightButton from '../../images/arrow-right.png'
 import scrollButtonDivider from '../../images/arrow-spacer.png'
 import axios from 'axios'
-import { KUBESKEY } from '../../rapidApiKey'
+
 
 function Actor () {
 

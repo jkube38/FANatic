@@ -4,7 +4,6 @@ import { searchName, image, displayName, knownFor, actorId, notActor, responseDa
 import axios from 'axios'
 import './header.css'
 import purpleLogo from '../../images/fanatic-logo-2.png'
-import { KUBESKEY } from '../../rapidApiKey.js'
 
 
 function Header () {

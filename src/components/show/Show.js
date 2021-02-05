@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
-import { useRecoilState, useResetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { image, displayName, actorId, genres, rating, plot, rated, topBilled, ratedBecause, runShow,
          runTopSix, topDisplayReady, topSix, notActor, searchName, knownFor, responseData, trailer, trailerId, actorSelect} from '../../globalState.js'
 import './show.css'
 import axios from 'axios'
-import { KUBESKEY } from '../../rapidApiKey'
 import Iframe from 'react-iframe'
 
 
