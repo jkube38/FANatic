@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { Fragment } from 'react'
 import { useRecoilState } from 'recoil'
-import { searchName, image, displayName, knownFor, actorId, actorImages, notActor, actorBio, actorFilmography, responseData} from '../../globalState.js'
+import { searchName, image, displayName, knownFor, actorId, notActor, responseData} from '../../globalState.js'
 import axios from 'axios'
 import './header.css'
 import purpleLogo from '../../images/fanatic-logo-2.png'
@@ -11,13 +11,10 @@ function Header () {
 
     const [useSearchName, setuseSearchName] = useRecoilState(searchName)
     const [useImage, setuseImage] = useRecoilState(image)
-    const [useDisplayName, setuseDisplayname] = useRecoilState(displayName)
+    const [useDisplayname, setuseDisplayname] = useRecoilState(displayName)
     const [useKnownFor, setuseKnownFor] = useRecoilState(knownFor)
     const [useActorId, setuseActorId] = useRecoilState(actorId)
-    const [useActorImages, setuseActorImages] = useRecoilState(actorImages)
-    const [isNotActor, setisNotActor] = useRecoilState(notActor)
-    const [useActorbio, setuseActorBio] = useRecoilState(actorBio)
-    const [useActorFilmography, setuseActorFilmography] = useRecoilState(actorFilmography)
+    const [useIsNotActor, setisNotActor] = useRecoilState(notActor)
     const [useResponseData, setuseResponseData] = useRecoilState(responseData)
 
     // Initial call from user search
@@ -27,27 +24,31 @@ function Header () {
             url: 'https://imdb8.p.rapidapi.com/title/auto-complete',
             params: {q: useSearchName},
             headers: {
-             'x-rapidapi-key': KUBESKEY,
+             'x-rapidapi-key': '1ddf0a8da3msh877010e622bf74dp10873cjsnd762a292965a',
              'x-rapidapi-host': 'imdb8.p.rapidapi.com'
             }
         };
   
         axios.request(options).then(function (response) {
-            console.log(response.data)
             setuseSearchName(response.data.d[0].l)
             setuseImage(response.data.d[0].i.imageUrl)
             setuseDisplayname(response.data.d[0].l)
             setuseKnownFor(response.data.d[0].s)
-            setuseActorId(response.data.d[0].id)
             setuseResponseData(response.data)
+            
+            if(response.data.d[0].id.substr(0, 2) === 'nm'){
+              setuseActorId(response.data.d[0].id)
+            } else if(useActorId !== ''){
+              setuseActorId('')
+            }
 
             let movieOrShow = response.data.d[0].q
             if (movieOrShow) {
-                console.log('movie or show')
                 setisNotActor(movieOrShow)
+                setuseSearchName('')
             } else {
                 setisNotActor('actor')
-                console.log('actor')
+                setuseSearchName('')
             }
 
             }).catch(function (error) {

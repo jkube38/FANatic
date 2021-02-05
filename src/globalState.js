@@ -5,6 +5,11 @@ export const searchName = atom({
     default: ''
 })
 
+export const actorSelect = atom ({
+    key: 'actorSelect',
+    defaut: ''
+})
+
 export const image = atom ({
     key: 'image',
     default: ''
@@ -72,5 +77,50 @@ export const rating = atom ({
 
 export const plot = atom ({
     key: 'plot',
+    default: ''
+})
+
+export const rated = atom ({
+    key: 'rated',
+    default: ''
+})
+
+export const ratedBecause = atom ({
+    key: 'ratedBecause',
+    default: ''
+})
+
+export const topBilled = atom ({
+    key: 'topBilled',
+    default: []
+})
+
+export const topSix = atom ({
+    key: 'topSix',
+    default: []
+})
+
+export const topDisplayReady = atom ({
+    key: 'topDisplayReady',
+    default: false
+})
+
+export const runShow = atom ({
+    key: 'runShow',
+    default: false
+})
+
+export const runTopSix = atom ({
+    key: 'runTopSix',
+    default: []
+})
+
+export const trailer = atom ({
+    key: 'trailer',
+    default: ''
+})
+
+export const trailerId = atom ({
+    key: 'trailerId',
     default: ''
 })

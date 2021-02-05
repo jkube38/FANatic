@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './Actor.css'
 import { useRecoilState } from 'recoil'
-import { searchName, image, displayName, knownFor, actorId, actorImages, actorBio, actorFilmography} from '../../globalState.js'
+import { searchName, image, displayName, knownFor, actorId, actorImages, actorBio, actorFilmography, actorSelect} from '../../globalState.js'
 import noPoster from '../../images/no_poster.png'
 import leftButton from '../../images/arrow-left.png'
 import rightButton from '../../images/arrow-right.png'
@@ -19,7 +19,7 @@ function Actor () {
     const [useActorImages, setuseActorImages] = useRecoilState(actorImages)
     const [useActorbio, setuseActorBio] = useRecoilState(actorBio)
     const [useActorFilmography, setuseActorFilmography] = useRecoilState(actorFilmography)
-
+    const [useActorSelect, setuseActorSelect] = useRecoilState(actorSelect)
 
 
     useEffect (() => {
@@ -34,7 +34,7 @@ function Actor () {
         url: 'https://imdb8.p.rapidapi.com/actors/get-bio',
         params: {nconst: useActorId},
         headers: {
-          'x-rapidapi-key': KUBESKEY,
+          'x-rapidapi-key': '1ddf0a8da3msh877010e622bf74dp10873cjsnd762a292965a',
           'x-rapidapi-host': 'imdb8.p.rapidapi.com'
         }
         
@@ -52,21 +52,20 @@ function Actor () {
 
     // Call to retrieve filmography
     const getFilmography = () => {
-      console.log('hello')
       const options = {
         method: 'GET',
         url: 'https://imdb8.p.rapidapi.com/actors/get-all-filmography',
         params: {nconst: useActorId},
         headers: {
-          'x-rapidapi-key': KUBESKEY,
+          'x-rapidapi-key': '1ddf0a8da3msh877010e622bf74dp10873cjsnd762a292965a',
           'x-rapidapi-host': 'imdb8.p.rapidapi.com'
         }
       };
       
       axios.request(options).then(function (response) {
         let allFilmography = response.data.filmography
-        console.log('right here fool', allFilmography)
         setuseActorFilmography(allFilmography)
+        setuseActorSelect('')
         
       }).catch(function (error) {
         console.error(error);
@@ -81,13 +80,12 @@ function Actor () {
         url: 'https://imdb8.p.rapidapi.com/actors/get-all-images',
         params: {nconst: useActorId},
         headers: {
-          'x-rapidapi-key': KUBESKEY,
+          'x-rapidapi-key': '1ddf0a8da3msh877010e622bf74dp10873cjsnd762a292965a',
           'x-rapidapi-host': 'imdb8.p.rapidapi.com'
         }
       };
       
       axios.request(options).then(function (response) {
-        console.log(response.data.resource.images)
         setuseActorImages(response.data.resource.images)
       }).catch(function (error) {
         console.error(error)
@@ -109,7 +107,6 @@ function Actor () {
             imageList.push(<img key={ image } className='actorImages' alt={ useActorImages[image].caption } src={ useActorImages[image].url }></img>)
           }
         }
-        console.log(imageList.length)
         return imageList
       }
 
@@ -164,9 +161,7 @@ function Actor () {
                       <p id='actorBio'>{useActorbio}</p>
                     </div>
                 </div>
-                
                 </div>
-                
             </div>
             <h2 id='filmographyTitle'>Filmography</h2>
             <div id='filmography'>

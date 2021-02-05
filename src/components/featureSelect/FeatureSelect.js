@@ -1,20 +1,32 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useRecoilState } from 'recoil'
 import { responseData } from '../../globalState'
 import './featureSelect.css'
 import noPoster from '../../images/no_poster.png'
-import Show from '../show/Show'
-import { searchName, image, displayName, knownFor, actorId, actorImages, actorBio, actorFilmography, notActor} from '../../globalState.js'
-
+import {actorId, notActor, runShow, topBilled, topSix, topDisplayReady, runTopSix, trailerId, trailer} from '../../globalState.js'
 
 function FeatureSelect () {
     const [useResponseData] = useRecoilState(responseData)
     const [useActorId, setuseActorId] = useRecoilState(actorId)
     const [useNotActor, setuseNotActor] = useRecoilState(notActor)
+    const [useRunShow, setuseRunShow] = useRecoilState(runShow)
+    const [useTopBilled, setuseTopBilled] = useRecoilState(topBilled)
+    const [useTopSix, setuseTopSix] = useRecoilState(topSix)
+    const [useTopDisplayReady, setuseTopDisplayReady] = useRecoilState(topDisplayReady)
+    const [useRunTopSix, setuseRunTopSix] = useRecoilState(runTopSix)
+    const [useTrailerId, setuseTrailerId] = useRecoilState(trailerId)
+    const [useTrailer, setuseTrailer] = useRecoilState(trailer)
 
+
+    setuseTrailer('')
+
+    
     const QueryCards = () => {
+
         let dataList = useResponseData.d
         let queryList = []
+        
+        console.log(dataList)
         for(let query = 0; query < dataList.length; query++){
             let poster
             if(dataList[query].i){
@@ -30,7 +42,7 @@ function FeatureSelect () {
                 let id = dataList[query].id
             queryList.push(
                 <div className='queryItem'>
-                    <img key={ id } alt='search image' className='poster' src={ poster } id={ id }/>
+                    <img key={ id } alt='movie poster' className='poster' src={ poster } id={ id + '/' + [query] } onClick={ SelectedMovie }/>
                     <div className='resultsInfo'>
                         <h2 className='title2' key={ title }>{ title }</h2>
                         <h2 className='year' key={ year }>{ year }</h2>
@@ -46,7 +58,7 @@ function FeatureSelect () {
                 let id = dataList[query].id
                 queryList.push(
                     <div className='queryItem'>
-                        <img key={ id } alt='search image' className='poster' src={ poster } />
+                        <img key={ id } alt='movie poster' className='poster' src={ poster } id={ id } onClick={ SelectedMovie }/>
                         <div className='resultsInfo'>
                             <h2 className='title2' key={ title }>{ title }</h2>
                             <h2 className='year' key={ year }>{ year }</h2>
@@ -58,13 +70,14 @@ function FeatureSelect () {
         return queryList
     }
 
-    window.onclick = e => {
-        console.log(e.target.id)
-        setuseActorId(e.target.id)
-        setuseNotActor('selectedMovie')
-    }
 
     
+    const SelectedMovie = e => {
+        setuseActorId(e.target.id)
+        console.log(e.target.id, 'id')
+        setuseNotActor('getTopSix')
+    }
+ 
 
     return (
         <div id='selectionHolder'>

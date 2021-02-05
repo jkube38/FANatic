@@ -1,7 +1,7 @@
 import React from 'react'
 import './home.css'
 import logo from '../../images/fanaticlog-white.png'
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 
 
 function Home () {

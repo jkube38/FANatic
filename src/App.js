@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect } from 'react'
+import React from 'react'
 import './components/header/Header'
 import Header from './components/header/Header'
 import { notActor } from './globalState'
@@ -9,6 +9,7 @@ import Home from './components/home/Home'
 import { useRecoilValue } from 'recoil'
 import Footer from './components/footer/Footer'
 import FeatureSelect from './components/featureSelect/FeatureSelect';
+import TopSix from './components/topSix/TopSix'
 
 
 
@@ -26,6 +27,8 @@ function App() {
         return <FeatureSelect />
       } else if (pageView === 'selectedMovie'){
         return <Show />
+      } else if (pageView === 'getTopSix'){
+        return <TopSix />
       }
     }
 
